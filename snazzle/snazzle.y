@@ -11,20 +11,45 @@
         char *sval;
 }
 
-// terminal symbol types, each is associated with a field of the union
+// constant-string tokens
+%token SNAZZLE TYPE
+%token END
 
+// terminal symbol types, each is associated with a field of the union
 %token <ival> INT
 %token <fval> FLOAT
 %token <sval> STRING
 
 %%
+// First rule defined is the highest-level, a "whole snazzle file"
 snazzle:
-        snazzle INT        { cout << "bison found an int: " << $2 << endl; }
-        | snazzle FLOAT    { cout << "bison found a float: " << $2 << endl; }
-        | snazzle STRING   { cout << "bison found a string: " << $2 << endl; }
-        | INT              { cout << "bison found an int: " << $1 << endl; }
-        | FLOAT            { cout << "bison found a float: " << $1 << endl; }
-        | STRING           { cout << "bison found a string: " << $1 << endl; }
+        header template body_section footer { cout << "done parsing snazzlefile!" << endl; }
+        ;
+header:
+        SNAZZLE FLOAT      { cout << "reading snazzlefile version: " << $2 << endl; }
+        ;
+template:
+        typelines
+        ;
+typelines:
+        typelines typeline
+        | typeline
+        ;
+typeline:
+        TYPE STRING { cout << "new defined snazzle type" << $2 << endl ; }
+        ;
+body_section:
+        body_lines
+        ;
+body_lines:
+        body_lines body_line
+        | body_line
+        ;
+body_line:
+        INT INT INT INT STRING { cout << "new snazzle: " << $1 << $2 << $3 << $4 << $5 << endl; }
+        ;
+footer:
+        END
         ;
 %%
 int main(int, char**) {

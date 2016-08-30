@@ -45,9 +45,12 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    INT = 258,
-    FLOAT = 259,
-    STRING = 260
+    SNAZZLE = 258,
+    TYPE = 259,
+    END = 260,
+    INT = 261,
+    FLOAT = 262,
+    STRING = 263
   };
 #endif
 
@@ -62,7 +65,7 @@ union YYSTYPE
         float fval;
         char *sval;
 
-#line 66 "snazzle.tab.h" /* yacc.c:1909  */
+#line 69 "snazzle.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
