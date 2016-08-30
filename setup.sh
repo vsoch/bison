@@ -5,6 +5,7 @@ cd bison-3.0
 ./configure
 make
 sudo make install
+sudo apt-get install flex
 
 # Steps I used to get example files
 #cd ..

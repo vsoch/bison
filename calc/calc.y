@@ -1,4 +1,5 @@
 /* Mini Calculator */
+/* This is the bison grammar declaration / definition file */
 /* calc.y */
 
 %{
@@ -7,6 +8,7 @@ int yyerror(char *s);
 int yylex(void);
 %}
 
+/* Bison declarations */
 %union{
   int		int_val;
   string*	op_val;
