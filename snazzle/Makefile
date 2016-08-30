@@ -14,4 +14,4 @@ all:
 	g++ snazzle.tab.c lex.yy.c -lfl -o snazzle
 
 clean: 
-	rm lex.yy.c snazzle.tab.c snazzle.tab.h
+	rm lex.yy.c snazzle.tab.c snazzle.tab.h snazzle

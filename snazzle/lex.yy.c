@@ -368,8 +368,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 9
-#define YY_END_OF_BUFFER 10
+#define YY_NUM_RULES 10
+#define YY_END_OF_BUFFER 11
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -379,7 +379,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[28] =
     {   0,
-        0,    0,   10,    8,    1,    1,    6,    7,    7,    7,
+        0,    0,   11,    9,    1,    8,    6,    7,    7,    7,
         7,    0,    6,    7,    7,    7,    7,    5,    4,    7,
         7,    7,    3,    7,    7,    2,    0
     } ;
@@ -478,7 +478,8 @@ char *yytext;
 #include "snazzle.tab.h"  // to get the token types that we return
 using namespace std;
 #define YY_DECL extern "C" int yylex()
-#line 482 "lex.yy.c"
+int line_num = 1;
+#line 483 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -665,9 +666,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 7 "snazzle.l"
+#line 8 "snazzle.l"
 
-#line 671 "lex.yy.c"
+#line 672 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -751,39 +752,38 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-/* rule 1 can match eol */
 YY_RULE_SETUP
-#line 8 "snazzle.l"
+#line 9 "snazzle.l"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "snazzle.l"
+#line 10 "snazzle.l"
 { return SNAZZLE; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 10 "snazzle.l"
+#line 11 "snazzle.l"
 { return TYPE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "snazzle.l"
+#line 12 "snazzle.l"
 { return END; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 12 "snazzle.l"
+#line 13 "snazzle.l"
 { yylval.fval = atof(yytext); return FLOAT; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "snazzle.l"
+#line 14 "snazzle.l"
 { yylval.ival = atoi(yytext); return INT; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 14 "snazzle.l"
+#line 15 "snazzle.l"
 {
 	// we have to copy because we can't rely on yytext not changing underneath us:
 	yylval.sval = strdup(yytext);
@@ -791,16 +791,22 @@ YY_RULE_SETUP
 }
 	YY_BREAK
 case 8:
+/* rule 8 can match eol */
 YY_RULE_SETUP
-#line 19 "snazzle.l"
-;
+#line 20 "snazzle.l"
+{ ++line_num; return ENDL;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 20 "snazzle.l"
+#line 21 "snazzle.l"
+;
+	YY_BREAK
+case 10:
+YY_RULE_SETUP
+#line 22 "snazzle.l"
 ECHO;
 	YY_BREAK
-#line 804 "lex.yy.c"
+#line 810 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1798,7 +1804,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 20 "snazzle.l"
+#line 22 "snazzle.l"
 
 
 

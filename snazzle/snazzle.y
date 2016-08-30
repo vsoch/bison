@@ -13,7 +13,7 @@
 
 // constant-string tokens
 %token SNAZZLE TYPE
-%token END
+%token END ENDL
 
 // terminal symbol types, each is associated with a field of the union
 %token <ival> INT
@@ -26,7 +26,7 @@ snazzle:
         header template body_section footer { cout << "done parsing snazzlefile!" << endl; }
         ;
 header:
-        SNAZZLE FLOAT      { cout << "reading snazzlefile version: " << $2 << endl; }
+        SNAZZLE FLOAT ENDLS      { cout << "reading snazzlefile version: " << $2 << endl; }
         ;
 template:
         typelines
@@ -36,7 +36,7 @@ typelines:
         | typeline
         ;
 typeline:
-        TYPE STRING { cout << "new defined snazzle type" << $2 << endl ; }
+        TYPE STRING ENDLS { cout << "new defined snazzle type" << $2 << endl ; }
         ;
 body_section:
         body_lines
@@ -46,11 +46,14 @@ body_lines:
         | body_line
         ;
 body_line:
-        INT INT INT INT STRING { cout << "new snazzle: " << $1 << $2 << $3 << $4 << $5 << endl; }
+        INT INT INT INT STRING ENDLS { cout << "new snazzle: " << $1 << $2 << $3 << $4 << $5 << endl; }
         ;
 footer:
-        END
+        END ENDLS
         ;
+ENDLS:
+	ENDLS ENDL
+	| ENDL ;
 %%
 int main(int, char**) {
 
@@ -73,6 +76,6 @@ int main(int, char**) {
 }
 
 void yyerror(const char *s) {
-    cout << "Parse error! Message: " << s << endl;
+    cout << "Parse error on line " << line_num << "! Message: " << s << endl;
     exit(-1);
 }

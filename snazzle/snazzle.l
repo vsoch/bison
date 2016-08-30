@@ -3,9 +3,10 @@
 #include "snazzle.tab.h"  // to get the token types that we return
 using namespace std;
 #define YY_DECL extern "C" int yylex()
+int line_num = 1;
 %}
 %%
-[ \t\n]           ;
+[ \t]             ;
 sNaZZle           { return SNAZZLE; }
 type              { return TYPE; }
 end               { return END; }
@@ -16,5 +17,6 @@ end               { return END; }
 	yylval.sval = strdup(yytext);
 	return STRING;
 }
+\n               { ++line_num; return ENDL;}
 .                ;
 %%

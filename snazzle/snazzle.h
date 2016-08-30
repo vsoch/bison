@@ -6,5 +6,6 @@ using namespace std;
 extern "C" int yylex();
 extern "C" int yyparse();
 extern "C" FILE *yyin;
+extern int line_num;
 
 void yyerror(const char *s);
